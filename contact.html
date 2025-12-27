@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Contact – OSIS SMP Insan Terpadu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{--bg:#0b0f14;--txt:#fff;--acc:#00ffd5}
+.light{--bg:#f5f7fa;--txt:#111}
+body{background:var(--bg);color:var(--txt);transition:.4s;font-family:Poppins,Arial;padding-top:80px;scroll-behavior:smooth}
+a{color:var(--acc);text-decoration:none}
+nav{position:fixed;top:0;width:100%;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 22px;background:rgba(0,0,0,.45);backdrop-filter:blur(12px)}
+nav a{margin-left:14px;font-weight:500;opacity:.8}
+nav a:hover{opacity:1}
+.section{padding:60px 20px;max-width:1200px;margin:auto;text-align:center}
+.card{background:rgba(255,255,255,.08);padding:28px;border-radius:22px;backdrop-filter:blur(12px);margin-bottom:40px}
+input,textarea,button{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:none}
+button{background:var(--acc);font-weight:700;cursor:pointer;transition:.3s}
+button:hover{opacity:.85;transform:scale(1.05)}
+.map{height:300px;background:rgba(255,255,255,.08);border-radius:16px;backdrop-filter:blur(12px);margin:28px 0}
+.footer{padding:28px;background:#000;text-align:center;font-size:14px;opacity:.75}
+</style>
+</head>
+<body>
+
+<nav>
+  <b>OSIS SMP Insan Terpadu</b>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="news.html">News</a>
+    <a href="contact.html">Contact</a>
+    <span onclick="toggleMode()" style="margin-left:14px;cursor:pointer">🌗</span>
+  </div>
+</nav>
+
+<section class="section">
+  <h1>Contact Us</h1>
+  <div class="card">
+    <h3>Email</h3><p>osintra.smart@gmail.com</p>
+    <h3>Tiktok</h3><p>@oster_terampil.2010</p>
+    <h3>Phone</h3><p>+62 821-3284-3353</p>
+  </div>
+
+  <h2>Send Us a Message</h2>
+  <div class="card">
+    <input placeholder="Your Name">
+    <input placeholder="Your Email">
+    <textarea placeholder="Your Message"></textarea>
+    <button>Send Message</button>
+  </div>
+
+  <h2>School Location</h2>
+<div class="map">
+  <iframe 
+    src="https://maps.app.goo.gl/PvgwDK9nXjxf7maU7" 
+    width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+  </iframe>
+</div>
+
+  <h2>Frequently Asked Questions</h2>
+  <div class="card" style="text-align:left">
+    <h4>1. How to contact OSIS?</h4>
+    <p>Email, Instagram, or form above.</p>
+    <h4>2. Can I join OSIS?</h4>
+    <p>Yes, all students can apply during registration.</p>
+    <h4>3. What activities are available?</h4>
+    <p>Science, sports, arts, community service, and leadership programs.</p>
+  </div>
+</section>
+
+<footer class="footer">© OSIS SMP Insan Terpadu • All Rights Reserved</footer>
+
+<script>
+function toggleMode(){document.body.classList.toggle("light")}
+</script>
+
+</body>
+</html>

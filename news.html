@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>News – OSIS SMP Insan Terpadu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{--bg:#0b0f14;--txt:#fff;--acc:#00ffd5}
+.light{--bg:#f5f7fa;--txt:#111}
+body{background:var(--bg);color:var(--txt);transition:.4s;font-family:Poppins,Arial;padding-top:80px;scroll-behavior:smooth}
+a{color:var(--acc);text-decoration:none}
+nav{position:fixed;top:0;width:100%;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 22px;background:rgba(0,0,0,.45);backdrop-filter:blur(12px)}
+nav a{margin-left:14px;font-weight:500;opacity:.8}
+nav a:hover{opacity:1}
+h1,h2{text-align:center;margin-bottom:28px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-bottom:40px}
+.card{background:rgba(255,255,255,.08);padding:24px;border-radius:18px;backdrop-filter:blur(12px);opacity:0;transform:translateY(40px);transition:1s}
+.card.show{opacity:1;transform:none}
+input,textarea,button{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:none}
+button{background:var(--acc);font-weight:700;cursor:pointer;transition:.3s}
+button:hover{opacity:.85;transform:scale(1.05)}
+.section{padding:60px 20px;max-width:1200px;margin:auto}
+.filter{margin-bottom:28px;text-align:center}
+.filter button{margin:4px}
+.footer{padding:28px;background:#000;text-align:center;font-size:14px;opacity:.75;margin-top:50px}
+</style>
+</head>
+<body>
+
+<nav>
+  <b>OSIS SMP Insan Terpadu</b>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="news.html">News</a>
+    <a href="contact.html">Contact</a>
+    <span onclick="toggleMode()" style="margin-left:14px;cursor:pointer">🌗</span>
+  </div>
+</nav>
+
+<section class="section">
+  <h1>News & Activities</h1>
+
+  <div class="filter">
+    <button onclick="filterCat('all')">All</button>
+    <button onclick="filterCat('science')">Science</button>
+    <button onclick="filterCat('sports')">Sports</button>
+    <button onclick="filterCat('community')">Community</button>
+  </div>
+
+  <div id="news" class="cards"></div>
+
+  <h2>Add News (Admin)</h2>
+  <input id="t" placeholder="Title">
+  <textarea id="d" placeholder="Description"></textarea>
+  <input id="c" placeholder="Category (science/sports/community)">
+  <button onclick="add()">Add News</button>
+</section>
+
+<footer class="footer">© OSIS SMP Insan Terpadu • All Rights Reserved</footer>
+
+<script>
+let data=JSON.parse(localStorage.news||JSON.stringify([
+  {t:"Tahfidz 2025",d:"Our students won awards in the Beasiswa Tahfidz.",c:"Tahfidz"},
+  {t:"Silat Tournament",d:"OSIS became champions in the Nasional Silat tournament.",c:"sports"},
+  {t:"Silat Tournament",d:"OSIS became champions in the Nasional Silat tournament.",c:"sports"},
+  {t:"Tahfidz 2025",d:"Our students won awards in the Beasiswa Tahfidz.",c:"Tahfidz"},
+  {t:"Tahfidz 2025",d:"Our students won awards in the Beasiswa Tahfidz.",c:"Tahfidz"},
+  {t:"Tahfidz 2025",d:"Our students won awards in the Beasiswa Tahfidz.",c:"Tahfidz""}
+]))
+const newsEl=document.getElementById("news")
+function load(cat="all"){
+  newsEl.innerHTML=""
+  data.forEach(n=>{
+    if(cat==="all"||n.c===cat){
+      let div=document.createElement("div")
+      div.className="card"
+      div.innerHTML=`<h3>${n.t}</h3><p>${n.d}</p><small>Category: ${n.c}</small>`
+      newsEl.appendChild(div)
+    }
+  })
+  document.querySelectorAll(".card").forEach(c=>c.getBoundingClientRect().top<innerHeight-100&&c.classList.add("show"))
+}
+function add(){
+  data.unshift({t:t.value,d:d.value,c:c.value||"all"});localStorage.news=JSON.stringify(data);t.value=d.value=c.value="";load()
+}
+function filterCat(c){load(c)}
+window.addEventListener("scroll",()=>document.querySelectorAll(".card").forEach(c=>c.getBoundingClientRect().top<innerHeight-100&&c.classList.add("show")))
+load()
+function toggleMode(){document.body.classList.toggle("light")}
+</script>
+
+</body>
+</html>
